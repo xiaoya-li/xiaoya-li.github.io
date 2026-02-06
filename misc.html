@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaoya Li | Homepage</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap" rel="stylesheet">
+    <style>
+        /* 固定导航栏样式 */
+        .navigation-bar {
+            position: fixed;  /* 关键：固定定位 */
+            top: 0;          /* 贴在顶部 */
+            left: 0;         /* 左边对齐 */
+            right: 0;        /* 右边对齐 */
+            width: 100%;     /* 全宽 */
+            background-color: rgba(255, 255, 255, 0.98); /* 半透明白色背景 */
+            backdrop-filter: blur(10px); /* 背景模糊效果 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 轻微阴影 */
+            z-index: 1000;   /* 确保导航栏在最上层 */
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        /* 导航栏滚动时的效果（可选） */
+        .navigation-bar.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo a {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo a:hover {
+            color: #0066cc;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0066cc;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+        /* 固定导航栏样式 */
+
+        </style>
+
+    <style>
+        /* ==============================
+           CSS Variables & Reset
+           ============================== */
+        :root {
+            --primary-color: #1a73e8;
+            --primary-hover: #174ea6;
+            --text-main: #202124;
+            --text-secondary: #5f6368;
+            --text-light: #80868b;
+
+            /* --- 背景调节区域 --- */
+            --bg-blur: 0px;
+            --bg-overlay: rgba(255, 255, 255, 0.91); /* 稍微调高不透明度，让文字更清晰 */
+            /* ------------------ */
+
+            --container-width: 860px;
+            --font-main: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 16px;
+            background-image: url('assets/background_v4.png'); /* 确保您有这个图片，或者移除这行 */
+            background-repeat: repeat;
+            background-size: 550px auto;
+            background-attachment: fixed;
+            background-position: top left;
+            background-color: #f8f9fa; /* 备用背景色 */
+            min-height: 100vh;
+        }
+
+        /* ==============================
+           Layout Containers
+           ============================== */
+        .page-overlay {
+            background-color: var(--bg-overlay);
+            -webkit-backdrop-filter: blur(var(--bg-blur));
+            backdrop-filter: blur(var(--bg-blur));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: var(--container-width);
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ==============================
+           New Navigation Bar (新增导航栏样式)
+           ============================== */
+        .site-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .nav-brand {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            font-size: 16px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin: 0 8px;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-separator {
+            color: #ddd;
+        }
+
+        /* ==============================
+           Typography & Links
+           ============================== */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .social-btn:hover, .nav-links a:hover, .nav-brand:hover {
+            text-decoration: none; /* 按钮和导航链接悬停时不加下划线 */
+        }
+
+        h1, h2, h3 {
+            color: var(--text-main);
+        }
+
+        p {
+            margin-bottom: 1em;
+            color: var(--text-secondary);
+        }
+
+        /* ==============================
+           Header / Profile Section
+           ============================== */
+        .profile-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 50px;
+            /* border-bottom removed purely because nav bar adds a line now, looks cleaner */
+            padding-bottom: 20px;
+        }
+
+        .profile-avatar {
+            flex-shrink: 0;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .avatar-placeholder {
+            font-size: 64px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-content {
+            flex: 1;
+            padding-top: 10px;
+        }
+
+        /* --- 修改部分：名字样式 (分离中英文) --- */
+        .profile-name {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        /* 英文部分：黑体/粗体 */
+        .name-en {
+            font-family: var(--font-main); /* 使用页面的默认 sans-serif */
+            font-weight: 700; /* 加粗 */
+            color: var(--text-main);
+        }
+
+        /* 中文部分：楷体/常规 */
+        .name-cn {
+            font-family: "KaiTi", "STKaiti", "楷体", serif;
+            font-weight: 400; /* 正常字重，不加粗 */
+            margin-left: 8px; /* 增加一点间距 */
+        }
+        /* ----------------------- */
+
+        .profile-bio {
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 6px 14px;
+            background-color: #f1f3f4;
+            color: var(--text-secondary);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .social-btn:hover {
+            background-color: #e8eaed;
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        /* ==============================
+           Section Styles
+           ============================== */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Timeline Items */
+        .timeline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .timeline-date {
+            min-width: 140px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            padding-top: 2px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-place {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .timeline-detail {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* Publication List */
+        .pub-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+
+        .pub-content {
+            flex: 1;
+        }
+
+        .pub-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .pub-authors {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .highlight-author {
+            color: var(--text-main);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: rgba(0,0,0,0.2);
+        }
+
+        .pub-venue {
+            font-style: italic;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        .pub-award {
+            color: #d93025;
+            font-weight: 700;
+        }
+
+        .pub-links {
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .pub-links a {
+            margin-right: 8px;
+            font-weight: 600;
+        }
+
+        /* Simple List */
+        .simple-list {
+            list-style: none;
+        }
+
+        .simple-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .simple-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #f1f3f4;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* ==============================
+           Responsive Design
+           ============================== */
+        @media (max-width: 768px) {
+            .page-overlay {
+                padding: 0;
+                background-color: #fff;
+            }
+
+            .main-container {
+                padding: 30px 20px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .site-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .timeline-date {
+                color: var(--text-light);
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-overlay">
+        <!-- Navigation Start -->
+        <!-- Navigation bar -->
+        <nav class="navigation-bar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="./index.html"><span class="name-en">Xiaoya Li</span>
+                        <span class="name-cn">李晓雅</span></a>
+                </div>
+                <div class="nav-menu">
+                    <a href="./index.html" class="nav-link">About</a>
+                    <a href="./publications.html" class="nav-link">Publications</a>
+                    <a href="./misc.html" class="nav-link">Misc.</a>
+                </div>
+            </div>
+        </nav>
+        <div class="main-container">
+
+           <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="toggleMenu()">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+            </div>
+        </div>
+    </nav>
+
+            <header class="profile-header">
+                <section class="section">
+                <h2>Miscellaneous</h2>
+                    <br>
+                    <h3>Some random stuff about me...</h3>
+                <div class="pub-item">
+                <div class="pub-content">
+                I enjoy photography, and I did an internship at a TV station in my freshman year. Back then, I never imagined that I would be coding for so long.</div>
+                </div>
+
+                <div class="pub-item">
+                    <div class="pub-content">
+                   I really enjoy cooking and baking. It can heal me so much when I feel stressed out or tired.
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                <div class="pub-content">
+               I love music. I played the clarinet when I was a kid. I am a mezzo-soprano, and I sang in my college choir.
+                </div>
+                </div>
+
+
+                <div class="pub-item">
+                    <div class="pub-content">
+                   You might catch me jumping rope, biking, or hiking.
+                    </div>
+                </div>
+
+
+            </section>
+
+            </header>
+
+            <footer class="footer">
+                <p>© 2025 Xiaoya Li | Last Update: Dec. 12, 2025.</p>
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>
